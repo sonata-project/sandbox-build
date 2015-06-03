@@ -86,8 +86,6 @@ class Container implements IntrospectableContainerInterface
     public function __construct(ParameterBagInterface $parameterBag = null)
     {
         $this->parameterBag = $parameterBag ?: new ParameterBag();
-
-        $this->set('service_container', $this);
     }
 
     /**
@@ -307,7 +305,7 @@ class Container implements IntrospectableContainerInterface
                 }
 
                 $alternatives = array();
-                foreach (array_keys($this->services) as $key) {
+                foreach ($this->services as $key => $associatedService) {
                     $lev = levenshtein($id, $key);
                     if ($lev <= strlen($id) / 3 || false !== strpos($key, $id)) {
                         $alternatives[] = $key;

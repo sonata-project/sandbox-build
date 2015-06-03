@@ -14,7 +14,7 @@ namespace Symfony\Cmf\Bundle\RoutingBundle\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\CoreBundle\Validator\ErrorElement;
+use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;

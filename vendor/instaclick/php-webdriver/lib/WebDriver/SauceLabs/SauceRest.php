@@ -59,7 +59,7 @@ class SauceRest
      * @param string $requestMethod HTTP request method
      * @param string $url           URL
      * @param mixed  $parameters    Parameters
-     * 
+     *
      * @return mixed
      *
      * @see http://saucelabs.com/docs/saucerest
@@ -69,6 +69,12 @@ class SauceRest
         $extraOptions = array(
             CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
             CURLOPT_USERPWD => $this->userId . ':' . $this->accessKey,
+
+            // don't verify SSL certificates
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false,
+
+            CURLOPT_HTTPHEADER => Array ('Expect:'),
         );
 
         $url = 'https://saucelabs.com/rest/v1/' . $url;
@@ -218,6 +224,18 @@ class SauceRest
     public function stopJob($jobId)
     {
         return $this->execute('PUT', $this->userId . '/jobs/' . $jobId . '/stop');
+    }
+
+    /**
+     * Delete job: /rest/v1/:userId/jobs/:jobId (DELETE)
+     *
+     * @param string $jobId
+     *
+     * @return array
+     */
+    public function deleteJob($jobId)
+    {
+        return $this->execute('DELETE', $this->userId . '/jobs/' . $jobId);
     }
 
     /**

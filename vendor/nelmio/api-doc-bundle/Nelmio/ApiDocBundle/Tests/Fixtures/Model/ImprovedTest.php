@@ -26,4 +26,5 @@ class ImprovedTest
     public $c2;
     public $c3;
     public $c4;
+    public $e1;
 }

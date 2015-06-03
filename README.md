@@ -18,12 +18,24 @@ Sonata Standard Edition comes pre-configured with the following bundles:
 Quick Installation
 ------------------
 
-The Sonata Project provides a build of the Sonata Project sandbox to quickly start with the projet.
+The Sonata Project provides a build of the current sandbox to quickly start with the projet.
 
-* Retrieve the code: ``curl -L https://github.com/sonata-project/sandbox-build/archive/2.4.tar.gz | tar xzv``
+    curl -L github https://github.com/sonata-project/sandbox-build/archive/2.4.tar.gz | tar xzv
+
+Once, you have the file, you can either use
+
+### Local Installation 
+
 * Configure default the ``parameters.yml`` file: ``cp app/config/parameters.yml.dist app/config/parameters.yml``
 * load the data: ``php bin/load_data.php``
 * You should should be ready to go ...
+
+### Vagrant Installation
+
+* vagrant up --provision --provider=virtualbox (Vagrant is going to get the environnement, install it for you and load sonata sample data)
+* Configure your host ``sudo nano /etc/hosts`` and add this line ``192.168.33.99   sonata.local``
+* Open your browser [here][link_sonata]
+
 
 Composer Installation
 ---------------------
@@ -89,3 +101,6 @@ To run the Sonata test suites, you can run the command:
 Enjoy!
 
 [link_behat]: http://docs.behat.org "the official Behat documentation"
+[link_vagrant]: http://www.vagrantup.com/downloads.html "Download Vagrant"
+[link_virtualbox]: https://www.virtualbox.org/wiki/Downloads "Download VirtualBox"
+[link_sonata]: http://sonata.local "Sonata"

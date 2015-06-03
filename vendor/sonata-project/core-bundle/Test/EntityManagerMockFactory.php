@@ -11,9 +11,10 @@
 
 namespace Sonata\CoreBundle\Test;
 
+use Doctrine\ORM\Version;
+
 class EntityManagerMockFactory
 {
-
     /**
      * @param \PHPUnit_Framework_TestCase $test
      * @param callable                    $qbCallback
@@ -26,9 +27,13 @@ class EntityManagerMockFactory
         $query = $test->getMockForAbstractClass('Doctrine\ORM\AbstractQuery', array(), '', false, true, true, array('execute'));
         $query->expects($test->any())->method('execute')->will($test->returnValue(true));
 
-        $entityManager = $test->getMock('Doctrine\ORM\EntityManagerInterface');
+        if (Version::compare('2.5.0') < 1) {
+            $entityManager = $test->getMock('Doctrine\ORM\EntityManagerInterface');
+            $qb = $test->getMockBuilder('Doctrine\ORM\QueryBuilder')->setConstructorArgs(array($entityManager))->getMock();
+        } else {
+            $qb = $test->getMockBuilder('Doctrine\ORM\QueryBuilder')->disableOriginalConstructor()->getMock();
+        }
 
-        $qb = $test->getMockBuilder('Doctrine\ORM\QueryBuilder')->setConstructorArgs(array($entityManager))->getMock();
         $qb->expects($test->any())->method('select')->will($test->returnValue($qb));
         $qb->expects($test->any())->method('getQuery')->will($test->returnValue($query));
         $qb->expects($test->any())->method('where')->will($test->returnValue($qb));

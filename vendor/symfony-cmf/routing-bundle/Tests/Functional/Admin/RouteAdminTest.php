@@ -36,7 +36,7 @@ class RouteAdminTest extends BaseTestCase
         parent::setUp();
         $this->db('PHPCR')->createTestNode();
         $this->routeAdmin = $this->getContainer()->get('cmf_routing.route_admin');
-        $this->errorElement = $this->getMockBuilder('Sonata\CoreBundle\Validator\ErrorElement')
+        $this->errorElement = $this->getMockBuilder('Sonata\AdminBundle\Validator\ErrorElement')
             ->disableOriginalConstructor()
             ->getMock();
     }

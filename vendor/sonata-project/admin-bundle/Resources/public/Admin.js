@@ -16,7 +16,6 @@ jQuery(document).ready(function() {
     }
 
     Admin.setup_per_page_switcher(document);
-
     Admin.shared_setup(document);
 });
 
@@ -121,6 +120,7 @@ var Admin = {
             emptyclass: 'editable-empty btn btn-sm btn-default',
             emptytext: '<i class="glyphicon glyphicon-edit"></i>',
             container: 'body',
+            placement: 'auto',
             success: function(response) {
                 if('KO' === response.status) {
                     return response.message;
